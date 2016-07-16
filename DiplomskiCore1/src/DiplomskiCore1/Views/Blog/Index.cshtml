@@ -1,0 +1,33 @@
+﻿@using DiplomskiCore1.ViewModels
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model DiplomskiCore1.ViewModels.BlogViewModel
+@{
+     ViewData["Title"] = "Contact";
+     ViewBag.Title = "Blogggg";
+ }
+
+<div class="container">
+    <h2>This is a blog page</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        @foreach (var blog in Model.Blogs)
+        {
+            <tr>
+                <td>
+                    <h2>@blog.Title</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>@blog.Text</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("Details", "Details", new {id = blog.Id}) | </td>
+                <td>@Html.ActionLink("Edit", "Edit", new {id = blog.Id, blogViewModel = new BlogEditViewModel()}) | </td>
+                <td>@Html.ActionLink("Delete", "Delete", new {id = blog.Id})</td>
+            </tr>
+        }
+
+    </table>
+</div>

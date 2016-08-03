@@ -3,14 +3,15 @@ using DiplomskiCore1.Models;
 using DiplomskiCore1.Services;
 using DiplomskiCore1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using DiplomskiCore1.Repository;
 
 namespace DiplomskiCore1.Controllers
 {
     public class CommentController : Controller
     {
-        private IRepository _repository;
+        private CommentRepository _repository;
 
-        public CommentController(IRepository repository)
+        public CommentController(CommentRepository repository)
         {
             _repository = repository;
         }
@@ -40,41 +41,27 @@ namespace DiplomskiCore1.Controllers
 
             _repository.Add(comment);
 
-            return RedirectToAction("Index", "Blog");
+            return RedirectToAction("Details", "Blog", new { id = model.BlogId });
         }
 
-        //[HttpPost] // does not working , fix it later
-        //public ViewResult Create()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public string Edit(int id, string text)
+        {
+            var comment = _repository.Get(id) as Comment;
 
-        //public ViewResult Edit(int id, BlogEditViewModel model)
-        //{
-        //    var blog = _repository.Get(id) as Blog;
+            if (comment == null)
+                return string.Empty;
 
-        //    if (blog == null)
-        //        return View("Index");
+            comment.Text = text;
+            _repository.Edit(comment);
 
-        //    if (model.Title == null || model.Text == null)
-        //    {
-        //        model.Title = blog.Title;
-        //        model.Text = blog.Text;
-        //        return View(model);
-        //    }
+            return comment.Text;
+        }
 
-        //    blog.Title = model.Title;
-        //    blog.Text = model.Text;
-
-        //    _repository.Edit(blog);
-
-        //    return View("Details", blog);
-        //}
-
-        //public ActionResult Delete(int id)
-        //{
-        //    _repository.Delete(_repository.Get(id));
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult Delete(int id, int blogId)
+        {
+            _repository.Delete(_repository.Get(id));
+            return RedirectToAction("Details", "Blog", new { id = blogId});
+        }
     }
 }

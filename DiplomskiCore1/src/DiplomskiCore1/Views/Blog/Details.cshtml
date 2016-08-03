@@ -1,34 +1,47 @@
 ﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model DiplomskiCore1.ViewModels.BlogCommentsViewModel
 @{
-    ViewData["Title"] = "Contact";
-    ViewBag.Title = "Blogggg";
+    ViewBag.Title = "Blog Details";
  }
 
 
 <div class="container">
     @Html.ActionLink("Back to List", "Index")
 
-    <h2>@Model.Title</h2>
-    <q>@Model.Text</q>
-
-    <hr/>
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.Title</div>
+        <div class="panel-body">
+            @Model.Text
+        </div>
+    </div>
     <h3>Comments</h3>
-    @foreach (var comment in Model.Comments)
-    {
-        <p>@comment.Text</p>
-        <hr/>
-    }
-
-    <hr/>
-    <form asp-controller="Comment" asp-action="Create" method="post" class="form-horizontal">
-        <input asp-for="BlogId" type="hidden" />
-        <div>
-            @Html.LabelFor(m => m.NewCommentText)
-            @Html.TextBoxFor(m => m.NewCommentText)
+    <div id="comments">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p class="comment" id="@comment.Id"> @comment.Text</p>
+                </div>
+                <div class="panel-footer">
+                    <span>@Html.ActionLink("Delete", "Delete", "Comment",
+                         new {id = comment.Id, blogId = Model.BlogId},
+                         new {
+                             @class = "btn btn-danger"
+                         })</span>
+                </div>
+            </div>
+        }
+    </div>
+    <form asp-controller="Comment" asp-action="Create" method="post"
+           class="form-horizontal">
+        <input asp-for="BlogId" type="hidden"/>
+        <div class="form-group">
+            <label asp-for="NewCommentText"></label>
+            <textarea asp-for="NewCommentText" class="form-control"
+                      placeholder="Enter your comments here..."></textarea>
         </div>
-        <div>
-            <input type="submit" value="Create" style="margin-left:30px" class="btn btn-default" />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
-      </form>
+    </form>
 </div>

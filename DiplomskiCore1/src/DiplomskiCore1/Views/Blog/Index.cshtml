@@ -2,8 +2,7 @@
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model DiplomskiCore1.ViewModels.BlogViewModel
 @{
-     ViewData["Title"] = "Contact";
-     ViewBag.Title = "Blogggg";
+     ViewBag.Title = "Blog List";
  }
 
 <div class="container">
@@ -11,23 +10,24 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table>
         @foreach (var blog in Model.Blogs)
         {
-            <tr>
-                <td>
-                    <h2>@blog.Title</h2>
-                </td>
-            </tr>
-            <tr>
-                <td>@blog.Text</td>
-            </tr>
-            <tr>
-                <td>@Html.ActionLink("Details", "Details", new {id = blog.Id}) | </td>
-                <td>@Html.ActionLink("Edit", "Edit", new {id = blog.Id, blogViewModel = new BlogEditViewModel()}) | </td>
-                <td>@Html.ActionLink("Delete", "Delete", new {id = blog.Id})</td>
-            </tr>
+            <div class="panel panel-default">
+                <div class="panel-heading">@blog.Title</div>
+                <div class="panel-body">
+                    @blog.Text
+                </div>
+                <div class="panel-footer">
+                    <span>@Html.ActionLink("Details", "Details",
+                             new { id = blog.Id },
+                             new { @class = "btn btn-default"})</span>
+                    <span>@Html.ActionLink("Edit", "Edit",
+                             new { id = blog.Id, blogViewModel = new BlogEditViewModel() },
+                             new { @class = "btn btn-primary" })</span>
+                    <span>@Html.ActionLink("Delete", "Delete",
+                             new {id = blog.Id},
+                             new { @class = "btn btn-danger" })</span>
+                </div>
+            </div>
         }
-
-    </table>
 </div>

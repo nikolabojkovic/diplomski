@@ -28,8 +28,8 @@ namespace DiplomskiCore1.Repository
             var blog = _dbContext.Blog.FirstOrDefault(item => item.Id == id);
             var comments = _dbContext.Comment.Where(item => item.BlogId == id);
             blog.Comments = new List<Comment>();
-            int count = comments.Count();
-            blog.Comments.AddRange(comments.ToList());
+            List<Comment> commentsTemp = comments.ToList();
+           // blog.Comments.AddRange(commentsTemp);
             return blog;
         }
 

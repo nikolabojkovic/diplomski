@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using DiplomskiCore1.Models;
-using DiplomskiCore1.Repository;
 using DiplomskiCore1.Services;
 using DiplomskiCore1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +40,7 @@ namespace DiplomskiCore1.Controllers
         }
          
         [HttpPost]
-        public ViewResult Create(BlogEditViewModel model)
+        public ActionResult Create(BlogEditViewModel model)
         {
             if (model.Title == null || model.Text == null)
                 return View();
@@ -53,12 +52,7 @@ namespace DiplomskiCore1.Controllers
             blog.Text = model.Text;
 
             _repository.Add(blog);
-            BlogCommentsViewModel blogViewModel = new BlogCommentsViewModel();
-            blogViewModel.Title = blog.Title;
-            blogViewModel.Text = blog.Text;
-            blogViewModel.Comments = new List<Comment>();
-
-            return View("Details", blogViewModel);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

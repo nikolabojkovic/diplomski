@@ -9,13 +9,12 @@ namespace DiplomskiCore1.Models
 {
     public class User : Repository.Data
     {
-
         public int Id { get; set; }
 
-        [Required]
+        public string AspNetUserId { get; set; }
+
         public string Password { get; set; }
 
-        [Required]
         public string Email { get; set; }
 
         [Display(Name = "Remeber me")]
@@ -23,12 +22,10 @@ namespace DiplomskiCore1.Models
 
         public bool IsAdmin { get; set; }
 
-        [Required]
         [StringLength(50)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         [Column("FirstName")]
         [Display(Name = "First Name")]

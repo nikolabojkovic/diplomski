@@ -1,9 +1,13 @@
 ﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using DiplomskiCore1.Repository;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject UserRpository userRepository
 @model DiplomskiCore1.ViewModels.BlogCommentsViewModel
 @{
     ViewBag.Title = "Blog Details";
+    User currentUser = userRepository.GetByAspNetUserId(UserManager.GetUserId(User)) as User;
  }
-
 
 <div class="container">
     @Html.ActionLink("Back to List", "Index")
@@ -13,21 +17,100 @@
         <div class="panel-body">
             @Model.Text
         </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <span id="like" class="fa fa-thumbs-up" data-like="@Model.BlogActivity.IsLike" aria-hidden="true"></span>
+                        <span id="numberOfLike">@Model.NumberOfLike</span>
+                        <span id="dislike" class="fa fa-thumbs-down mirror" data-dislike="@Model.BlogActivity.IsDislike" aria-hidden="true"></span>
+                        <span id="numberOfDislike">@Model.NumberOfDisike</span>
+                    }
+                    else
+                    {
+                        <span id="SignInTolike" class="fa fa-thumbs-up" data-like="False" aria-hidden="true"
+                              data-toggle="popover" data-placement="bottom" 
+                              data-container="body" title="Like this video?" 
+                              data-content="Sign in to make your opinion count."></span>
+                        <span id="numberOfLike">@Model.NumberOfLike</span>
+                        <span id="SignInToDislike" class="fa fa-thumbs-down mirror" data-dislike="False" aria-hidden="true"
+                              data-toggle="popover" data-placement="bottom" 
+                              data-container="body" title="Like this video?" 
+                              data-content="Sign in to make your opinion count." aria-hidden="true"></span>
+                            <span id="numberOfDislike">@Model.NumberOfDisike</span>
+                    }
+                    
+                </div>
+                <div class="col-md-4">
+               <!--    <span>
+                        <span class="fa fa-star" aria-hidden="true"></span>
+                        <span class="fa fa-star-half" aria-hidden="true"></span>
+                    </span>--> 
+                </div>
+                <div class="col-md-4">
+                    @{
+                        User blogAuthor = userRepository.Get(Model.AuthorId) as User;
+                    }
+                    @if (blogAuthor != null)
+                    {
+                        <span>Created by: @blogAuthor.FirstMidName @blogAuthor.LastName</span>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
     <h3>Comments</h3>
     <div id="comments">
         @foreach (var comment in Model.Comments)
         {
             <div class="panel panel-default">
+                @{
+                    User commentAuthor = null;
+                    if (comment.Author != null)
+                    {
+                        commentAuthor = userRepository.Get(comment.Author.Id) as User;
+                    }
+                }
                 <div class="panel-body">
-                    <p class="comment" id="@comment.Id"> @comment.Text</p>
+              @if (SignInManager.IsSignedIn(User) && ((comment.Author != null && currentUser.Id == comment.Author.Id) || currentUser.IsAdmin))
+              {
+                 <p class="comment" id="@comment.Id"> @comment.Text</p>
+              }
+              else
+              {
+                <p id="@comment.Id"> @comment.Text</p>
+              }
+
                 </div>
                 <div class="panel-footer">
-                    <span>@Html.ActionLink("Delete", "Delete", "Comment",
-                         new {id = comment.Id, blogId = Model.BlogId},
-                         new {
-                             @class = "btn btn-danger"
-                         })</span>
+                    <div class="row">
+                        <div class="col-md-4">
+                            @if (SignInManager.IsSignedIn(User) && ((comment.Author != null && currentUser.Id == comment.Author.Id) || currentUser.IsAdmin))
+                            {
+
+                                <span>
+                                    @Html.ActionLink("Delete", "Delete", "Comment",
+                                    new { id = comment.Id, blogId = Model.BlogId },
+                                    new
+                                    {
+                                        @class = "btn btn-danger"
+                                    })
+                                </span>
+
+                            }
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+
+                            @if (commentAuthor != null)
+                            {
+
+                                <div class="col-md-4">
+                                    <span>Created by: @commentAuthor.FirstMidName @commentAuthor.LastName</span>
+                                </div>
+                            }
+                        </div>
                 </div>
             </div>
         }

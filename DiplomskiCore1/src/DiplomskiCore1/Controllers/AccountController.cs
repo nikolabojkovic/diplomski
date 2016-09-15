@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using DiplomskiCore1.Models;
 using DiplomskiCore1.Models.AccountViewModels;
 using DiplomskiCore1.Services;
+using DiplomskiCore1.Repository;
 
 namespace DiplomskiCore1.Controllers
 {
@@ -22,19 +23,22 @@ namespace DiplomskiCore1.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly UserRpository _userRepository;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            UserRpository userRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _userRepository = userRepository;
         }
 
         //
@@ -105,7 +109,7 @@ namespace DiplomskiCore1.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -115,6 +119,14 @@ namespace DiplomskiCore1.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
+
+                    User tempUser = new User();
+                    tempUser.AspNetUserId = user.Id;
+                    tempUser.Email = user.Email;
+                    tempUser.FirstMidName = model.FirstName;
+                    tempUser.LastName = model.LastName;
+                    _userRepository.Add(tempUser);
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);

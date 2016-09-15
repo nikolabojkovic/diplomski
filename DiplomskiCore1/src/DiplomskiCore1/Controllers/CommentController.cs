@@ -3,17 +3,28 @@ using DiplomskiCore1.Models;
 using DiplomskiCore1.Services;
 using DiplomskiCore1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using DiplomskiCore1.Repository;
 
 namespace DiplomskiCore1.Controllers
 {
     public class CommentController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserRpository _userRepository;
         private CommentRepository _repository;
 
-        public CommentController(CommentRepository repository)
+        public CommentController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            CommentRepository repository,
+            UserRpository userRepository)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _repository = repository;
+            _userRepository = userRepository;
         }
 
         //public ViewResult Index()
@@ -34,10 +45,12 @@ namespace DiplomskiCore1.Controllers
         [HttpPost]
         public ActionResult Create(BlogCommentsViewModel model)
         {
+            User tempUser = _userRepository.GetByAspNetUserId(_userManager.GetUserId(User)) as User;
+
             var comment = new Comment();
             comment.BlogId = model.BlogId;
-            
             comment.Text = model.NewCommentText;
+            comment.Author = tempUser;
 
             _repository.Add(comment);
 

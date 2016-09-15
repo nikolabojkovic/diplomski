@@ -58,8 +58,9 @@ namespace DiplomskiCore1
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<IRepository, BlogRepository>();
+            services.AddTransient<BlogRepository, BlogRepository>();
             services.AddTransient<CommentRepository, CommentRepository>();
+            services.AddTransient<UserRpository, UserRpository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

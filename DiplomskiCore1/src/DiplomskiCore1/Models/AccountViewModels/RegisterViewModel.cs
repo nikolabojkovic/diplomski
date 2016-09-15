@@ -9,6 +9,18 @@ namespace DiplomskiCore1.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
+        [DataType(DataType.Text)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

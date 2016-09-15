@@ -7,6 +7,7 @@ namespace DiplomskiCore1.ViewModels
     public class BlogCommentsViewModel
     {
         public int BlogId { get; set; }
+        public int AuthorId { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
 
@@ -22,5 +23,7 @@ namespace DiplomskiCore1.ViewModels
         public string NewCommentText { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
+
+        public BlogActivity BlogActivity { get; set; }
     }
 }

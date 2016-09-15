@@ -30,6 +30,22 @@ textarea {
     padding-left: 0.5em;
 }
 
+.mirror {
+    display: block; 
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.like{
+    color:dodgerblue;
+}
+
+.dislike{
+    color:black;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
   /* Hide captions */
@@ -40,5 +56,6 @@ textarea {
   .input-limited-width
 {
     max-width: 1000000px;
+
 }
 }

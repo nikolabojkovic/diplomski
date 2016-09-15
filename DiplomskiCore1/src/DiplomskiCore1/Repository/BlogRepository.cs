@@ -29,7 +29,13 @@ namespace DiplomskiCore1.Repository
             var comments = _dbContext.Comment.Where(item => item.BlogId == id);
             blog.Comments = new List<Comment>();
             List<Comment> commentsTemp = comments.ToList();
-           // blog.Comments.AddRange(commentsTemp);
+
+            // blog.Comments.AddRange(commentsTemp);
+            //foreach (var comment in blog.Comments)
+            //{
+            //    comment.Author.ToString();
+            //}
+
             return blog;
         }
 
@@ -49,6 +55,32 @@ namespace DiplomskiCore1.Repository
         public void Delete(Data item)
         {
             _dbContext.Remove(item);
+            foreach (var blogActivityItem in _dbContext.BlogActivity.Where(x => x.BlogId == ((Blog)item).Id))
+            {
+                _dbContext.Remove(blogActivityItem);
+            }
+
+            _dbContext.SaveChanges();
+        }
+
+        public void AddActivity(Data item)
+        {
+            _dbContext.Add(item);
+            _dbContext.SaveChanges();
+        }
+
+        public Data GetActivity(int blogId, int authorId)
+        {
+            var blogActivity = _dbContext.BlogActivity.FirstOrDefault(
+                item => item.BlogId == blogId && item.AuthorId == authorId);
+
+            return blogActivity;
+        }
+
+        public void RecordLike(Data blogActivity, Data blog)
+        {
+            _dbContext.Update(blogActivity);
+            _dbContext.Update(blog);
             _dbContext.SaveChanges();
         }
     }

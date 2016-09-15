@@ -8,9 +8,10 @@ using DiplomskiCore1.Data;
 namespace DiplomskiCore1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160806111359_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
@@ -88,21 +89,6 @@ namespace DiplomskiCore1.Migrations
                     b.ToTable("Blog");
                 });
 
-            modelBuilder.Entity("DiplomskiCore1.Models.BlogActivity", b =>
-                {
-                    b.Property<int>("AuthorId");
-
-                    b.Property<int>("BlogId");
-
-                    b.Property<bool>("IsDislike");
-
-                    b.Property<bool>("IsLike");
-
-                    b.HasKey("AuthorId", "BlogId");
-
-                    b.ToTable("BlogActivity");
-                });
-
             modelBuilder.Entity("DiplomskiCore1.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -125,16 +111,6 @@ namespace DiplomskiCore1.Migrations
                     b.HasIndex("BlogId");
 
                     b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("DiplomskiCore1.Models.New", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("New");
                 });
 
             modelBuilder.Entity("DiplomskiCore1.Models.User", b =>

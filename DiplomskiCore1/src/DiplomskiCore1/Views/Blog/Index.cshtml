@@ -1,15 +1,25 @@
 ﻿@using DiplomskiCore1.ViewModels
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using DiplomskiCore1.Repository;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject UserRpository userRepository
 @model DiplomskiCore1.ViewModels.BlogViewModel
 @{
-     ViewBag.Title = "Blog List";
+    ViewBag.Title = "Blog List";
+
+    User currentUser = userRepository.GetByAspNetUserId(UserManager.GetUserId(User)) as User;
+
  }
 
 <div class="container">
     <h2>This is a blog page</h2>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
         @foreach (var blog in Model.Blogs)
         {
             <div class="panel panel-default">
@@ -19,14 +29,26 @@
                 </div>
                 <div class="panel-footer">
                     <span>@Html.ActionLink("Details", "Details",
-                             new { id = blog.Id },
-                             new { @class = "btn btn-default"})</span>
-                    <span>@Html.ActionLink("Edit", "Edit",
-                             new { id = blog.Id, blogViewModel = new BlogEditViewModel() },
-                             new { @class = "btn btn-primary" })</span>
-                    <span>@Html.ActionLink("Delete", "Delete",
-                             new {id = blog.Id},
-                             new { @class = "btn btn-danger" })</span>
+                              new {id = blog.Id},
+                              new {@class = "btn btn-default"})</span>
+                    
+                        @if (SignInManager.IsSignedIn(User) && (currentUser.Id == blog.AuthorId || currentUser.IsAdmin))
+                        {
+                            <span>@Html.ActionLink("Edit", "Edit",
+                                      new {id = blog.Id, blogViewModel = new BlogEditViewModel()},
+                                      new {@class = "btn btn-primary"})</span>
+                            <span>@Html.ActionLink("Delete", "Delete",
+                                      new {id = blog.Id},
+                                      new {@class = "btn btn-danger"})</span>
+                        }
+                        
+                    @{ 
+                        User blogAuthor = userRepository.Get(blog.AuthorId) as User;
+                    }
+                        @if (blogAuthor != null)
+                        {
+                            <span style="float:right">Created by: @blogAuthor.FirstMidName @blogAuthor.LastName</span>   
+                        }
                 </div>
             </div>
         }

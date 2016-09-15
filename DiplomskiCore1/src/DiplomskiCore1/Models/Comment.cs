@@ -21,5 +21,8 @@ namespace DiplomskiCore1.Models
 
         [ForeignKey("BlogId")]
         public virtual Blog Blog { get; set; }
+
+        [ForeignKey("AuthorId")]
+        public virtual User Author { get; set; }
     }
 }

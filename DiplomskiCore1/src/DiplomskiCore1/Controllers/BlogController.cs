@@ -75,7 +75,7 @@ namespace DiplomskiCore1.Controllers
                 blogActivity = new BlogActivity();
 
             viewModel.BlogActivity = blogActivity;
-
+            
             return View(viewModel);
         }
          
@@ -111,8 +111,8 @@ namespace DiplomskiCore1.Controllers
                 return View("Index");
 
             var model = new BlogEditViewModel();
-                model.Title = blog.Title;
-                model.Text = blog.Text;
+            model.Title = blog.Title;
+            model.Text = blog.Text;
 
             return View(model);
         }

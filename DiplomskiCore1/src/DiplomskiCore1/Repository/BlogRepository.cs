@@ -6,7 +6,9 @@ using DiplomskiCore1.Data;
 using DiplomskiCore1.Models;
 using DiplomskiCore1.Services;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
+using Remotion.Linq.Clauses;
 
 namespace DiplomskiCore1.Repository
 {
@@ -25,16 +27,28 @@ namespace DiplomskiCore1.Repository
 
         public Data Get(int id)
         {
-            var blog = _dbContext.Blog.FirstOrDefault(item => item.Id == id);
-            var comments = _dbContext.Comment.Where(item => item.BlogId == id);
-            blog.Comments = new List<Comment>();
-            List<Comment> commentsTemp = comments.ToList();
+            // find blog
+            // first approach
+            //var blog = _dbContext.Blog.FirstOrDefault(item => item.Id == id);
 
-            // blog.Comments.AddRange(commentsTemp);
-            //foreach (var comment in blog.Comments)
-            //{
-            //    comment.Author.ToString();
-            //}
+            // second approach
+            string query = "SELECT *"
+                        + " FROM blog "
+                        + " WHERE id = " + id;
+            IEnumerable<Blog> blogs = _dbContext.Blog.FromSql(query);
+            Blog blog = blogs.FirstOrDefault( x=> x.Id == id);
+
+            //find comments for blog 
+            // first approach
+            // var comments = _dbContext.Comment.Where(item => item.BlogId == id);
+
+            // second approach
+            var commentsLoaded = _dbContext.Comment.Include(x=> x.Author);
+              var comments = from comment in commentsLoaded
+                             where comment.BlogId == id
+                             select comment;
+
+            blog.Comments = comments.ToArray();
 
             return blog;
         }
@@ -54,7 +68,11 @@ namespace DiplomskiCore1.Repository
 
         public void Delete(Data item)
         {
-            _dbContext.Remove(item);
+            //_dbContext.Remove(item);
+            string query = "DELETE FROM blog"
+                         + " WHERE id = " + ((Blog)item).Id;
+            _dbContext.Database.ExecuteSqlCommand(query);
+
             foreach (var blogActivityItem in _dbContext.BlogActivity.Where(x => x.BlogId == ((Blog)item).Id))
             {
                 _dbContext.Remove(blogActivityItem);

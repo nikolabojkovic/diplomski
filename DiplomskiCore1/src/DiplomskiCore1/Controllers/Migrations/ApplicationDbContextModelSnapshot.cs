@@ -127,16 +127,6 @@ namespace DiplomskiCore1.Migrations
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("DiplomskiCore1.Models.New", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("New");
-                });
-
             modelBuilder.Entity("DiplomskiCore1.Models.User", b =>
                 {
                     b.Property<int>("Id")

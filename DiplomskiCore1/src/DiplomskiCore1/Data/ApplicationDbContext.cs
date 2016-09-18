@@ -18,8 +18,6 @@ namespace DiplomskiCore1.Data
         public DbSet<User> User { get; set; }
         public DbSet<BlogActivity> BlogActivity { get; set; }
 
-        public DbSet<New> New { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

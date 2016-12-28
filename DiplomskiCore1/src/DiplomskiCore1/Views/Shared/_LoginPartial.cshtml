@@ -9,7 +9,7 @@
     User currentUser = userRepository.GetByAspNetUserId(UserManager.GetUserId(User)) as User;
 }
 
-@if (SignInManager.IsSignedIn(User))
+@if (SignInManager.IsSignedIn(User) && currentUser != null)
 {
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">

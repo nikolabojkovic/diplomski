@@ -32,12 +32,12 @@ namespace DiplomskiCore1.Controllers
             return View();
         }
 
-        public IActionResult Portfolio()
+        public IActionResult Galery()
         {
             return View();
         }
 
-        public IActionResult Services()
+        public IActionResult Portfolio()
         {
             return View();
         }

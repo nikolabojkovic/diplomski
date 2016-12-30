@@ -39,7 +39,7 @@
       "version": "1.0.0-preview1-final",
       "type": "build"
     },
-    //"SendGrid.NetCore": "1.0.0-rc2-00004"
+    "SendGrid.NetCore": "1.0.0-rc2-00001"
   },
 
   "tools": {

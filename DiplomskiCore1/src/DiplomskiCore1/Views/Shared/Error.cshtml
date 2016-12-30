@@ -1,14 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Error";
-}
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
-</p>
+﻿<div class="error-404">
+    <div class="error-code m-b-10 m-t-20">404 <i class="fa fa-warning"></i></div>
+    <h2 class="font-bold">Oops 404! That page can’t be found.</h2>
+    <div class="error-desc">
+        Sorry, but the page you are looking for was either not found or does not exist. <br />
+        Try refreshing the page or click the button below to go back to the Homepage.
+        <div>
+            <br />
+            <!-- <a class=" login-detail-panel-button btn" href="http://vultus.de/"> -->
+            <a href="/" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> Go back to Homepage</a>
+        </div>
+    </div>
+</div>

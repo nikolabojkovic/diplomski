@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using DiplomskiCore1.ViewModels;
 using System;
-using SendGrid;
-using System.Net.Mail;
+//using SendGrid;
+//using System.Net.Mail;
 using System.Net;
 
 namespace DiplomskiCore1.Controllers
@@ -46,15 +46,15 @@ namespace DiplomskiCore1.Controllers
                     //}
 
 
-                    var message = new SendGridMessage();
-                    message.From = new MailAddress(model.Email, model.Name);
-                    message.AddTo("nikolabojkovic@gmail.com");
-                    message.Subject = model.Subject;
-                    message.Text = model.Message;
+                    //var message = new SendGridMessage();
+                    //message.From = new MailAddress(model.Email, model.Name);
+                    //message.AddTo("nikolabojkovic@gmail.com");
+                    //message.Subject = model.Subject;
+                    //message.Text = model.Message;
 
-                    var credentials = new NetworkCredential("azure_cbaddb14998b0f70fba95fa7171191cb@azure.com", "gaim5867");
-                    var transportWeb = new Web(credentials);
-                    transportWeb.DeliverAsync(message).Wait();
+                    //var credentials = new NetworkCredential("azure_cbaddb14998b0f70fba95fa7171191cb@azure.com", "gaim5867");
+                    //var transportWeb = new Web(credentials);
+                    //transportWeb.DeliverAsync(message).Wait();
 
                     model = new ContactViewModel(); // problem view does not refresh model when it bind to element
                     model.Name = "peder";

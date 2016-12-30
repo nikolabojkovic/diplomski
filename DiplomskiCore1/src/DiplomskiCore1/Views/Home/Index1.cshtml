@@ -1,7 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model DiplomskiCore1.ViewModels.ContactViewModel
 
-<h2>Naslov</h2>
+<section id="contact-page">
+    <div class="container">
+        <div class="center">
+            <h2>Drop Your Message</h2>
+            <p class="lead">We will get back you soon. Keep In Touch. For More details send a message..</p>
+        </div>
+        <div class="row contact-wrap">
+            <form class="contact-form" name="contact-form" method="post" action="/Home/Test">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input type="submit" value="Submit Message" class="btn btn-primary btn-lg" />
+                        <!--<button runat="server" ID="contactUsButtonHtm" type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>-->
+                    </div>
+                </div>
+            </form>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section>

@@ -1,12 +1,14 @@
-﻿@{
+﻿@model DiplomskiCore1.ViewModels.ContactViewModel
+@{
     ViewData["Title"] = "Contact";
 }
-<!--
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
--->
-
-<section id="contact-info">
+@if (Model != null && Model.MessageSent)
+{    <div class="container center wow fadeInDown" style="padding:0px">
+        <br/>
+        <label asp-for="SendMessageResponse" class="status alert alert-success">@Model.SendMessageResponse</label>
+     </div>
+}
+<section id="contact-info" style="padding-top:0px">
     <br /> <br />
     <div class="center">
         <h2>How to Reach Us?</h2>
@@ -87,43 +89,44 @@
     <div class="container">
         <div class="center">
             <h2>Drop Your Message</h2>
-            <p class="lead">We will get back you soon. Keep In Touch. For More Bootstrap asp.net Templates..</p>
+            <p class="lead">We will get back you soon. Keep In Touch. For More details send a message..</p>
         </div>
         <div class="row contact-wrap">
-            <div class="status alert alert-success" style="display: none"></div>
-            <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+            <form asp-controller="Contact" asp-action="SendMail" class="contact-form" name="contact-form" method="post">
                 <div class="col-sm-5">
                     <div class="form-group">
-                        <label>Name *</label>
-                        <input ID="txtName" class="form-control" runat="server" required="required" />
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label>Email *</label>
-                        <input ID="txtemail" class="form-control" runat="server" required="required" />
-
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="number" class="form-control">
+                        <label asp-for="Phone"></label>
+                        <input asp-for="Phone" class="form-control">
+                        <span asp-validation-for="Phone" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label>Company Name</label>
-                        <input ID="txtcmpnm" runat="server" class="form-control" required="required"/>
+                        <label asp-for="CompanyName"></label>
+                        <input asp-for="CompanyName" class="form-control" />
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group">
-                        <label>Subject *</label>
-                        <input ID="txtsubject" runat="server" class="form-control" required="required" />
-
+                        <label asp-for="Subject"></label>
+                        <input asp-for="Subject" class="form-control" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label>Message *</label>
-                        <textarea ID="txtmsg" runat="server" class="form-control" required="required" Rows="8" TextMode="MultiLine"></textarea>
-
+                        <label asp-for="Message"></label>
+                        <textarea asp-for="Message" class="form-control" Rows="8" TextMode="MultiLine"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="button" runat="server" ID="contactUsButton" value="Submit Message" class="btn btn-primary btn-lg" OnClick="contactUsButton_Click"/>
+                        <input type="submit" value="Submit Message" class="btn btn-primary btn-lg"/>
                         <!--<button runat="server" ID="contactUsButtonHtm" type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>-->
                     </div>
                 </div>

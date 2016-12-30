@@ -20,13 +20,6 @@ namespace DiplomskiCore1.Controllers
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page. breeeeee";
-
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View();
@@ -43,6 +36,12 @@ namespace DiplomskiCore1.Controllers
         }
 
         public IActionResult Index1()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Test()
         {
             return View();
         }

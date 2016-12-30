@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-DiplomskiCore1-a1f32f71-0757-4b9d-bae1-fb173c05224e",
 
   "dependencies": {
@@ -35,10 +35,11 @@
       "version": "1.0.0-preview1-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview1-final",
       "type": "build"
-    }
+    },
+    "SendGrid.NetCore": "1.0.0-rc2-00004"
   },
 
   "tools": {

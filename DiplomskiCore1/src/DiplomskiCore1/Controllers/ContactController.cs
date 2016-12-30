@@ -54,7 +54,7 @@ namespace DiplomskiCore1.Controllers
 
                     var credentials = new NetworkCredential("azure_cbaddb14998b0f70fba95fa7171191cb@azure.com", "gaim5867");
                     var transportWeb = new Web(credentials);
-                    transportWeb.DeliverAsync(message);
+                    transportWeb.DeliverAsync(message).Wait();
 
                     model = new ContactViewModel(); // problem view does not refresh model when it bind to element
                     model.Name = "peder";

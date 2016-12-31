@@ -79,7 +79,9 @@ namespace DiplomskiCore1
             }
             else
             {
-                app.UseExceptionHandler();
+                app.UseStatusCodePagesWithReExecute("/Home/Error");
+
+               // app.UseMvcWithDefaultRoute();
             }
 
             app.UseApplicationInsightsExceptionTelemetry();

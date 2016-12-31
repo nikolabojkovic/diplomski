@@ -46,10 +46,18 @@ textarea {
     color:black;
 }
 
-/* erro page */
+
+.test {
+    color : red;
+}
+
+/* error page */
 .error-404 {
   margin: 0 auto;
   text-align: center;
+  position:absolute;
+  top: 30%;
+  left: 35%;
 }
 .error-404 .error-code {
   bottom: 60%;
@@ -71,6 +79,7 @@ textarea {
 .error-404 .m-t-20 {
   margin-top: 20px!important;
 }
+
 /* error page*/
 
 /* Hide/rearrange for smaller screens */

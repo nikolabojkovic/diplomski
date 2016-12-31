@@ -22,6 +22,7 @@ namespace DiplomskiCore1.Controllers
 
         public IActionResult Error()
         {
+            
             return View();
         }
 

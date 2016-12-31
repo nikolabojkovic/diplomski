@@ -42,13 +42,7 @@
                                       new {@class = "btn btn-danger"})</span>
                         }
                         
-                    @{ 
-                        User blogAuthor = userRepository.Get(blog.AuthorId) as User;
-                    }
-                        @if (blogAuthor != null)
-                        {
-                            <span style="float:right">Created by: @blogAuthor.FirstMidName @blogAuthor.LastName</span>   
-                        }
+                 
                 </div>
             </div>
         }

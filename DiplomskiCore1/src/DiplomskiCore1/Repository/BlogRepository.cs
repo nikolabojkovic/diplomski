@@ -22,7 +22,7 @@ namespace DiplomskiCore1.Repository
         }
         public IEnumerable<Data> GetAll()
         {
-            return _dbContext.Blog;
+            return _dbContext.Blog.Include(x => x.Author);
         }
 
         public Data Get(int id)

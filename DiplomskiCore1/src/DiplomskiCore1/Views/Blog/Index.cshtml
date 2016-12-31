@@ -42,7 +42,10 @@
                                       new {@class = "btn btn-danger"})</span>
                         }
                         
-                 
+                        @if (blog.Author != null)
+                        {
+                            <span style="float:right">Created by: @blog.Author.FirstMidName @blog.Author.LastName</span>   
+                        }
                 </div>
             </div>
         }

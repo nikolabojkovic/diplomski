@@ -47,7 +47,7 @@ namespace DiplomskiCore1.Controllers
             //}
 
             model.Blogs = _repository.GetAll() as IEnumerable<Blog>;
-
+            
             return View(model);
         }
 

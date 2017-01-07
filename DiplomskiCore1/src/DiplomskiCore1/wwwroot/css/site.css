@@ -82,29 +82,6 @@ textarea {
 
 /*erro page end */
 
-/**
-.log-off-btn:hover {
-
-    background-color : #0066FF;
-    transition: color 300ms, background-color 300m;
-    position: relative;
-    top: 1px;
-    margin-right: 0px;
-}
-
-.log-off-btn:hover > button:hover {
-    transition: color 300ms, background-color 300m;
-    border-width: 2px;
-    border-color: #3399FF;
-    color: white !important;
-    border-style:none;
-    text-decoration:none;
-    margin: 0px;
-    padding: 6px 12px;
-    margin-top:0px;
-}
-    */
-
 .log-off-btn > button {
     color:white !important;
     width: 100%;
@@ -112,7 +89,7 @@ textarea {
     padding: 8px 15px;
     margin: 0px;
     border: none;
-    background-color: #101010;
+    background-color: transparent;
 }
 
 .log-off-btn > button:hover {

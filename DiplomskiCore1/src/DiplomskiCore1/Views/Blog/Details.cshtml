@@ -75,7 +75,7 @@
                 <div class="panel-body">
               @if (SignInManager.IsSignedIn(User) && ((comment.Author != null && currentUser.Id == comment.Author.Id) || currentUser.IsAdmin))
               {
-                 <p class="comment" id="@comment.Id"> @comment.Text</p>
+                 <p class="comment" id="@comment.Id"> @comment.Text <i class="fa fa-edit fa-lg"></i></p>
               }
               else
               {

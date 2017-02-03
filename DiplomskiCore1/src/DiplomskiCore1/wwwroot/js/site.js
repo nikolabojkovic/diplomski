@@ -174,3 +174,14 @@ jQuery('.back-to-top').click(function (event) {
 });
 
 /////////////////////////////////////
+
+
+//////////about collaplse expand  /////////////////
+jQuery(".panel-heading").click(function(){
+    $(this).parent().children(".panel-body").slideToggle("slow");
+}); 
+
+
+//////// end collaplse expand  ///////////////
+
+

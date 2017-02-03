@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="1a76f0e8-8b9a-46a5-9de5-8883c586348f" name="DbModel" linkedPackageId="c926c86f-4682-4bfd-a0f4-a4371c923c44" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="108cd8d1-d1f8-4558-a9d7-9fc8a5ccfc40">
+      <elementDefinition Id="9143c517-323e-40b7-b616-e0acb5296368" />
+      <body>
+- ActivityRepository is gonna store data in ActionDb also, that is the whole idea.</body>
+      <annotatedElements>
+        <classMoniker Id="bf3400de-65a6-418b-85f2-2a94e2b0b4e2" LastKnownName="Activity" />
+      </annotatedElements>
+    </comment>
+    <comment Id="216b0bb9-e345-45eb-8523-a9672e09609b">
+      <elementDefinition Id="09b575bf-8460-4723-99bb-9d0d14ee4e97" />
+      <body>PostBridge should inject repositroyType(data or db) and should choose which type is sutable in relevant moment</body>
+      <annotatedElements>
+        <classMoniker Id="30d7a50a-85cd-4b3c-94e1-354c204b3f3c" LastKnownName="PostBridge" />
+      </annotatedElements>
+    </comment>
+    <comment Id="e5cdeabf-a3e6-409e-9ecb-25e8d3a67918">
+      <elementDefinition Id="94b3ddc6-9ed1-4ae1-b178-614042196969" />
+      <body>Problem only with fact how to store entity in db? 
+-Agregation and composition are only for db implementation not for class containers because controller is gonna be container if better solution is not found
+
+- in plan to add Message class (should be easy to add)!!!</body>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ef38f15a-3629-4a9a-a40d-4e4937f8e1d6" name="Post" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fc75916d-bbef-42c5-b41c-d7b9c328d176" />
+        <generalsInternal>
+          <generalization Id="5a50f765-c30b-476d-8892-56569a6b01f7" isSubstitutable="false">
+            <classMoniker Id="fd93041a-7302-4219-b701-4ac111a634e8" LastKnownName="(Abstract) Entity" />
+            <elementDefinition Id="1150054b-f6f7-481c-b23b-eb020b1c2485" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="0bcca3b4-5721-4668-a65d-336f94c9131a" isDerived="false" sourceEndRoleName="Post" targetEndRoleName="Comments" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2b4d1e91-a263-4ca8-b714-6cdc8087fd62" LastKnownName="Comments" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="13fd9390-5d53-4d06-ada9-c9ef399f7a4b" name="Post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="16d32e3a-e5ca-406a-9e6a-ad4d78ef38ce" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f6ddcf7b-1a4d-4bd3-ad13-4a3a0becd0fb" name="Comments" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="f9a793a5-00b5-415a-b463-7e5f0f7dda0f" name="Lower" value="*">
+                      <elementDefinition Id="7665e508-14ec-4b84-8ed1-e1f50eb11197" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="0dcb4a5a-cbfa-47cc-818b-f73e543accf0" name="Upper" value="*">
+                      <elementDefinition Id="3f7133a3-d54a-45fa-9235-eb1ee8c422ea" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="574e6ce3-493d-418e-a3d2-a896826c1057" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e9b72d78-e508-4085-abcb-169679ed529b" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="0fc16dd7-f739-44c5-980d-9f8fb92b9894" name="Title" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c57adfff-3ca0-48bb-ada7-7e8bf579c5a1" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cf084652-de40-4a03-868f-71adad6421fa" name=".NetUser" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="02e1d812-646a-43a2-b1bb-a673ccd360e5" />
+        <suppliersInternal>
+          <dependency Id="09a0bbaf-9499-4ba0-9cff-2b4329669079">
+            <interfaceMoniker Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" LastKnownName="IRepository" />
+            <elementDefinition Id="5686ff71-3452-482b-aa9a-b46da95ca5a4" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="8358490f-816e-4e90-8d9e-85f384eebcf6" name="Register" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="022e67a7-269c-4b0f-9cca-e6fb0ffa6bc0" />
+          </operation>
+          <operation Id="5d613b3e-e272-4d9d-95b1-bf5e1dcfe5ec" name="LogIn" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="393cee2b-89f2-4818-9f8d-c6636496f172" />
+          </operation>
+          <operation Id="1ac8b0b6-4caf-4bae-875d-be720a503146" name="LogOut" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3c13a92e-4987-48b8-8851-22a85c452df0" />
+          </operation>
+          <operation Id="b57d32ed-a298-4869-be6b-5ad318f80770" name="UpdateAccount" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9420944e-d668-4c9c-a49a-f31451bbb5d9" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" name="IRepository" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a04a1435-319d-495c-93cf-cfdd5821e7d4" />
+        <ownedOperations>
+          <operation Id="45e0bddb-8e31-48fc-afaf-92ef51a97c44" name="Add" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="03c69b39-760b-4804-8ab8-a2f5ed89ca5e" />
+          </operation>
+          <operation Id="c804a074-db9c-4349-97e7-312ed487f6b0" name="Delete" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="11e58ee5-b313-496a-a2ab-1eefa670df66" />
+          </operation>
+          <operation Id="d6c493ee-893c-42a1-a3e7-bab0380933f1" name="Update" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="30c3f968-0f47-45f4-a404-10c8b3014801" />
+          </operation>
+          <operation Id="0710c819-ce99-4cd7-9b7d-8ff0a62e1d89" name="Get" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4de4127e-6e35-4f85-b578-47568126a84a" />
+          </operation>
+          <operation Id="feece130-886e-4d87-85c3-4e2127767644" name="GetAll" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="41b2a1a0-b2db-409d-b1ed-3243b2097886" />
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2b4d1e91-a263-4ca8-b714-6cdc8087fd62" name="Comments" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b4068de4-26d7-4f55-832a-30b9b03b31cf" />
+        <generalsInternal>
+          <generalization Id="d37f7fc2-e191-4fd9-a130-41c758b0ddb2" isSubstitutable="false">
+            <classMoniker Id="fd93041a-7302-4219-b701-4ac111a634e8" LastKnownName="(Abstract) Entity" />
+            <elementDefinition Id="74ece0aa-e6b2-4b3b-8f34-e16f1d9161b0" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bf3400de-65a6-418b-85f2-2a94e2b0b4e2" name="Activity" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="40d37fad-bf62-47ef-b79a-f0e9f1157f2d" />
+        <suppliersInternal>
+          <dependency Id="4a8841c7-4ac5-41a6-95d0-3f5cc8ed5eec">
+            <interfaceMoniker Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" LastKnownName="IRepository" />
+            <elementDefinition Id="81d5d1a6-e11d-4859-9eda-a89d27d40e59" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="aade9128-4540-49e0-b28a-46ce3d0f568a" isDerived="false" sourceEndRoleName="Activity" targetEndRoleName="Action" isLeaf="false" isAbstract="false">
+            <classMoniker Id="637745f4-4e5e-4407-9103-2fc98bf90733" LastKnownName="Action" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d34907f4-7ca7-43fb-8c33-bf7ff3c4d957" name="Activity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="92cffc7e-f05a-4041-a681-eaf9caf23da7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4dc3167e-db64-44e7-94df-0f4b50cf48f3" name="Action" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="67eae3f2-541a-466c-8da3-74a4537659fd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c01dff00-9c80-4015-baea-9796878b260e" />
+          </association>
+          <association Id="5d0d11ff-be2e-4225-87a2-e0f07ca5b7a2" isDerived="false" sourceEndRoleName="Activity" targetEndRoleName="(Abstract) Entity" isLeaf="false" isAbstract="false">
+            <classMoniker Id="fd93041a-7302-4219-b701-4ac111a634e8" LastKnownName="(Abstract) Entity" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fa943c37-73db-4f10-8e90-06e4a9afb3fd" name="Activity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f9dbfa75-0765-4992-ae5a-bb79e05e7e14" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8e5630a0-86ef-42c2-956d-1c5e03334cfd" name="(Abstract) Entity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c1081444-3b03-4494-86af-f5dee9117505" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4011013c-b270-4c41-a30a-7dfca64ba89c" />
+          </association>
+          <association Id="d9e5faa8-6fab-4cd8-a513-3fe5536b6c37" isDerived="false" sourceEndRoleName="Activity" targetEndRoleName=".NetUser" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cf084652-de40-4a03-868f-71adad6421fa" LastKnownName=".NetUser" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4482742d-0da5-4ce1-9c74-0b684af868c1" name="Activity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fcca3ed7-d36b-48be-8819-9d179cf3ef46" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="98aa087c-0743-4956-b4e6-a38660b43960" name=".NetUser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="65027aa9-9cb6-4ab9-8545-8fa0c5de0935" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0977fe02-db68-4260-9f45-d063dccd3c84" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="2c14f46c-676b-4489-86de-760c3390dec5" name="ActionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4b0c3b76-03f7-4774-8633-68a4bc82243c" />
+          </property>
+          <property Id="e1ad0c44-13e3-42ca-a4e7-afce14b9263b" name=".NetUserId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b86e25e5-48b1-4ab0-a303-19ae5a80993e" />
+          </property>
+          <property Id="478377b9-c69e-4651-9c87-4307e5e0f509" name="EntityId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8c5acb64-5704-4deb-8d8d-c6ef6ca926ba" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fd93041a-7302-4219-b701-4ac111a634e8" name="(Abstract) Entity" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ecd5305d-6977-4e4e-bcc7-a02af1b8c094" />
+        <suppliersInternal>
+          <dependency Id="6e5a68a7-db3d-447f-90a7-c778fae9b59d">
+            <interfaceMoniker Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" LastKnownName="IRepository" />
+            <elementDefinition Id="ff7c5dd9-2f9f-4416-ae3d-6743d2c115d7" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="794d6b75-a031-4859-9d2f-99853df9e6a5" isDerived="false" sourceEndRoleName="(Abstract) Entity" targetEndRoleName=".NetUser" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cf084652-de40-4a03-868f-71adad6421fa" LastKnownName=".NetUser" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cd70b11f-8a5e-4e28-998e-061c1a6559f3" name="(Abstract) Entity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="517b269c-b75d-4f82-b207-feaab8819a3c" name="Lower" value="*">
+                      <elementDefinition Id="973e5877-d93f-4e13-8f49-1b248d6b9eb3" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="a31606b5-8fd9-4afd-8a29-31b10f7b2d20" name="Upper" value="*">
+                      <elementDefinition Id="9aad768d-3ecd-4657-819f-4d16a3119948" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="1922d04c-4bec-4049-b56f-c8adf8d7ae09" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="67669f9e-fe98-40d6-b7ad-d3f74b85925f" name=".NetUser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="0d3099e8-78f2-4131-8471-15b4fa1219e2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6215fa68-5503-4b0b-8a6a-892269cf1db9" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="b162ae6d-0c1d-42cb-96b7-03c204c87673" name="Text" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="184ef711-584e-4590-af96-cd7839d1ffac" />
+          </property>
+          <property Id="c51ba763-cfaf-4647-b1f5-79057cb9d27e" name=".NetUserId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="be9f676f-3ba3-4962-b7bb-376a06600ae2" />
+          </property>
+          <property Id="ffcb5e9b-a296-4eba-8fcf-1c0f3ba5d1d3" name="EntityId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b3956998-47b5-4d41-a59e-6968a46ad485" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="44ff9c48-d354-4c88-ba53-84b7e1e7ff26" name="GetEntityId" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ee18ee67-3fcf-4890-a458-9af2dee8207d" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="637745f4-4e5e-4407-9103-2fc98bf90733" name="Action" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="815c87bb-23ee-46e5-8cc8-7c9765f9ff93" />
+        <targetEnds>
+          <association Id="3fb253d5-0b3f-4125-9aa2-f772e7c2a1ff" isDerived="false" sourceEndRoleName="Action" targetEndRoleName="ActionType" isLeaf="false" isAbstract="false">
+            <enumerationMoniker Id="7274c982-c4a2-454b-ab47-a7b547f4ac1c" LastKnownName="ActionType" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6e886b95-76ff-49e7-883d-642189371561" name="Action" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="62776514-f22f-41e9-a421-a8051a0fc13c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0c34527f-bd9b-4691-bb43-866aa7fe2801" name="ActionType" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d4b60cf6-57e7-44f2-a2ae-e8e3bbe2ebc9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8aeaa164-ccce-4c76-9088-20d17fdc91a9" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="ee8a9273-3594-4c2d-9f06-650145f83b30" name="ActionType" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="9d855765-072b-4bf3-8ddc-7af63f367da6" />
+          </property>
+          <property Id="ee2b6f8e-50e1-46f1-999c-8df3bd175e18" name="ActivityId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6ef4ae6c-8c14-430e-ac0a-24fdbb3f98ad" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="7274c982-c4a2-454b-ab47-a7b547f4ac1c" name="ActionType" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="84312fc4-fe2c-4f77-b4eb-1ce7e2e1d9de" />
+        <ownedLiterals>
+          <enumerationLiteral Id="9a07c698-2748-4d19-90f9-3fae7658dbe9" name="Like">
+            <elementDefinition Id="0c123a0f-2cf4-4cb0-81d6-211a624d8ec4" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="05c840d8-3dcd-402a-9bd7-a99a87cf32c3" name="Dislike">
+            <elementDefinition Id="0944d645-66ac-470d-9505-1b49feb5522e" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="94bfe1e5-3539-4c3f-ac61-a548bd6e9e02" name="Vote">
+            <elementDefinition Id="56965265-a0f7-44c9-a1b7-a350070be770" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="fcbaaa45-2c10-4bd7-9808-10c2fda19bad" name="Add">
+            <elementDefinition Id="1297508b-db88-4760-ab45-7651ef7b1f7d" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="358c25be-a609-42ee-9a2c-5224ccd10f4b" name="Delete">
+            <elementDefinition Id="27471159-d374-4dfc-9653-9b0df5d0cf8a" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="403d1854-6d55-4c65-847d-aa4ce7f726d5" name="Update">
+            <elementDefinition Id="fb5ab6d2-5373-4144-bcc8-9685600ccf70" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="ec46c037-3b2a-49ff-aafe-acbdecfe23ec" name="Apply">
+            <elementDefinition Id="ac86ae82-30d3-4fba-9dff-2705c11f579e" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="94bba4e9-620d-4720-b303-7fa11fed99c5" name="JobOffer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f402125b-df8a-4313-b1cb-4248402f07e9" />
+        <generalsInternal>
+          <generalization Id="231ea756-1d8f-49ee-b2c2-074983fade7d" isSubstitutable="false">
+            <classMoniker Id="ef38f15a-3629-4a9a-a40d-4e4937f8e1d6" LastKnownName="Post" />
+            <elementDefinition Id="22f433f7-61aa-4f6a-8851-a1ac27bf2dde" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1052ac72-616b-4681-9ce0-ad52bb216407" name="DbRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e0ca4936-1135-4206-bcda-8c7e3df58cba" />
+        <suppliersInternal>
+          <interfaceRealization Id="223dbfdd-a6cd-46bc-94fc-05bb64164632">
+            <interfaceMoniker Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" LastKnownName="IRepository" />
+            <elementDefinition Id="814d5331-da29-4bb7-a3b3-994e47f19436" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="6148c503-0e1e-49d7-939d-9bd35a743eb6" name="Add" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8156fdd5-c874-4537-ae19-ed764e1d5b76" />
+          </operation>
+          <operation Id="b08b3a36-3a32-4a63-b6db-cb00103d1a5d" name="Delete" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ff745c47-165b-48a0-943a-d60620b6ba7f" />
+          </operation>
+          <operation Id="9e7f702d-164c-4c50-b5cc-00cc892351fc" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b074a3e3-7fb3-4670-989f-bbae85dc32b2" />
+          </operation>
+          <operation Id="b0819cf5-5598-42a7-8fe9-a7760b56fe76" name="Get" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d50e8eb2-9ff0-42dd-b0d1-85f4bd977a0a" />
+          </operation>
+          <operation Id="d98ee034-b10e-4a0e-b4f7-e1fe27378258" name="GetAll" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1faa74a5-5d24-4653-96e4-3019ab872cba" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2d96142c-fdd8-4516-950f-f3093df0e6ba" name="DataRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fd866396-df84-48e0-9cbb-f400c58114f9" />
+        <suppliersInternal>
+          <interfaceRealization Id="9cf99276-cb1a-40ef-bf39-f8e1ffbdfb48">
+            <interfaceMoniker Id="5de8069f-c31d-469a-8fb0-66a1677e61c9" LastKnownName="IRepository" />
+            <elementDefinition Id="27a0f672-9645-4461-9693-1b4a7b20ca4b" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="8c9fbc4e-98dc-4832-931a-3eb5ba23c52b" name="Add" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c9b1c011-a47d-404f-8e9c-c5c0f5fa4a1c" />
+          </operation>
+          <operation Id="052b9420-dd3f-496c-a0d3-398d6ed28c12" name="Delete" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="509d4572-5f37-4922-a777-a101fb463223" />
+          </operation>
+          <operation Id="1023ba2b-7bad-44a5-9278-45d2f7ed3398" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="904fed53-e420-46ad-a2af-65d514667b7d" />
+          </operation>
+          <operation Id="011bc90a-6de5-49bc-86f6-638fc05d3dc4" name="Get" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b31de5f4-5d27-4bc2-80d0-558987059d90" />
+          </operation>
+          <operation Id="1fd6e4c5-5336-42c9-8d11-16d7a5767fcc" name="GetAll" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bc41d003-9c45-4e4b-b764-4defc47bfbd7" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8e18eee5-03da-4021-97e8-30226e4a4f73" name="PostDbRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e5b59a5e-5b38-4051-b821-d4c5b31b4f95" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="641ed738-3d1a-4fe3-b715-22c8aae40399" name="CommentDbRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1e3cca40-e024-44c9-a37f-bdd8f6410417" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="75afd57d-0df7-4772-a834-a28e9fdf7fd2" name="ActivityDbRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0f9bd26e-b318-4c95-a2b5-c919072c994e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="125c208f-abcf-43bf-a757-a9e5717d67a7" name=".NetUserDbRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1cc23aaa-aa58-49d6-a5cb-8a865311641e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="061cff4f-9a2f-4317-a30c-2eaac96c6da3" name=".NetUserDataRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f771a95d-c19e-4dc1-91ca-01cbff98abd6" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e77014d0-912a-47cc-93a2-90960043a088" name="ActivityDataRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7294d87b-c5dc-46b8-9ec5-e5b07311d777" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="635f8ec6-a442-4f47-88b7-c7d104637f7f" name="CommentDataRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="19d3303b-137d-4690-9a3b-213672c59a53" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9f98039a-d61d-4763-9a04-0fed61af8d09" name="PostDataRepository" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="58fbed1d-7555-45a3-85ab-3ff74987074a" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b80fda7c-09f1-45e7-bdd5-bea08f08f70e" name=".NetUserBridge" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="561a1a4d-8d28-4bf9-b4c2-26221f6f95de" />
+        <targetEnds>
+          <association Id="392415ae-c543-475e-a5c9-bae7db5734ea" isDerived="false" sourceEndRoleName=".NetUserBridge" targetEndRoleName=".NetUser" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cf084652-de40-4a03-868f-71adad6421fa" LastKnownName=".NetUser" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2d1bc2dd-a892-4d3b-a82c-bea373bdf598" name=".NetUserBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5874fe2c-8fe5-4eae-95f9-6d5f03391fe1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f7b14ef7-899a-4fe4-b010-18271db6f6f4" name=".NetUser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8db2f829-0540-40ef-aade-641df4d993b1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f7444650-52d4-4e2d-8d24-68d5a064aa94" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a80d54b8-6005-4ec2-9691-05c5b76b3b26" name="ActivityBridge" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4b5d37a5-94f4-40b6-8743-315aa22f0587" />
+        <targetEnds>
+          <association Id="48059c04-b618-472e-a94d-cb65b874c0ef" isDerived="false" sourceEndRoleName="ActivityBridge" targetEndRoleName="Activity" isLeaf="false" isAbstract="false">
+            <classMoniker Id="bf3400de-65a6-418b-85f2-2a94e2b0b4e2" LastKnownName="Activity" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="52f2e6ba-a736-41df-866b-2c70ac729aea" name="ActivityBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="aa2ab307-4719-4891-bd2f-e815521b480c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7b2a949c-3d5d-4085-a581-225f845b9b47" name="Activity" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2e3ddeef-0143-46e5-8c65-758f7ce41234" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="800aee50-dcff-451a-aac5-b8f847104cc0" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="55ba0b0c-3d09-41df-a4fb-273bc8a33a93" name="CommentBridge" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dda35e8c-6fdc-4048-9046-55ae3c69f9be" />
+        <targetEnds>
+          <association Id="7fa63b6b-7636-4efa-96f8-492cae3babd1" isDerived="false" sourceEndRoleName="CommentBridge" targetEndRoleName="Comments" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2b4d1e91-a263-4ca8-b714-6cdc8087fd62" LastKnownName="Comments" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="debc2c35-a470-4e2b-b67f-1aeba203282f" name="CommentBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6324de05-9ffb-4f1a-80f9-1347500ad1e4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ca9a1b03-9c15-493c-becb-0268a09fc47b" name="Comments" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9d07734c-32fb-41bb-b87d-830b4732480a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="841d2eb5-7903-47bc-92fc-d3fbd5d7d309" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="30d7a50a-85cd-4b3c-94e1-354c204b3f3c" name="PostBridge" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6bfe020f-b8c5-4f5b-bf1a-80991ea903cf" />
+        <targetEnds>
+          <association Id="97bb05ff-eabc-4de2-9e40-9c065eb5cdf4" isDerived="false" sourceEndRoleName="PostBridge" targetEndRoleName="Post" isLeaf="false" isAbstract="false">
+            <classMoniker Id="ef38f15a-3629-4a9a-a40d-4e4937f8e1d6" LastKnownName="Post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fe546e4a-f373-4a4d-b0ea-36da1d4cfcee" name="PostBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d3e966af-1037-4597-8616-04d754c8f010" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4010eb77-c459-4891-aed2-89db0a992a51" name="Post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f4ae8884-e79a-4e6c-8efa-6f6cae5c138e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1df16da6-f3e4-4b80-af14-b85dd4c59461" />
+          </association>
+          <association Id="b7f96199-81f6-4828-818b-cb3743ccee7b" isDerived="false" sourceEndRoleName="PostBridge" targetEndRoleName="PostDataRepository" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9f98039a-d61d-4763-9a04-0fed61af8d09" LastKnownName="PostDataRepository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9e996265-76db-4a76-b999-e089298be4ba" name="PostBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="79563081-239e-41ee-aec9-1fd7cba638cb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="489d1c8f-f149-4570-ab6e-c12ae2dddbd6" name="PostDataRepository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4850cdd0-ba72-4482-a976-38fb0c4982bf" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f02bfa86-b943-491e-8fbf-df00d7b45237" />
+          </association>
+          <association Id="db2b966a-7388-4bb6-a763-9d33eea2c2b5" isDerived="false" sourceEndRoleName="PostBridge" targetEndRoleName="PostDbRepository" isLeaf="false" isAbstract="false">
+            <classMoniker Id="8e18eee5-03da-4021-97e8-30226e4a4f73" LastKnownName="PostDbRepository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="12649e94-6149-4fc5-b129-14a1997f1a62" name="PostBridge" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="257074a9-774a-473c-85ca-befdc8c97d5b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c62edb9f-99df-49fc-8126-ace08ae43677" name="PostDbRepository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8278b300-893f-4415-9e63-545bcc91c343" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="35f72147-2d8b-4648-9bb0-ac10dbe78929" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5d58b324-50e8-4071-b625-2e4e3c79ca00" name="Message" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="98fccbdb-ddf1-48d1-990d-a095982c9957" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="c926c86f-4682-4bfd-a0f4-a4371c923c44" name="WebSiteModel">
+    <elementDefinition Id="c4ed3709-3fe0-4665-83e7-4cedbf1baef6" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d811e742-6dbb-43ea-8ed1-4e733705f82f">
+        <profileInstance Id="caaaa050-d8c6-4e01-957d-8ca850252114" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="c1d72f8f-2b0d-472d-90b7-6538e6d9c19c">
+        <profileInstance Id="d311a12c-983c-499e-94ea-bae33d334e87" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

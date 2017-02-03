@@ -3,69 +3,221 @@
     ViewData["Title"] = "Manage your account";
 }
 
-<h2>@ViewData["Title"].</h2>
-<p class="text-success">@ViewData["StatusMessage"]</p>
+<div class="container">
+    <p class="text-success">@ViewData["StatusMessage"]</p>
+    
+    <!-- about collapse and expand -->
+   <!--<div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse"><b>YOUR ACCOUNT INFO</b><center>Click to expand or collapse</center></div>
+        <div class="panel-body">
+            Content
+        </div>
+    </div>
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            @if (Model.HasPassword)
-            {
-                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
-            }
-            else
-            {
-                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Create</a>
-            }
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
+    <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse"><b>YOUR ACCOUNT INFO</b></div>
+        <div class="panel-body">
+            Content1
+        </div>
+    </div>--> 
 
-            @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
-        </dd>
-        <dt>Phone Number:</dt>
-        <dd>
-            <p>
-                Phone Numbers can used as a second factor of verification in two-factor authentication.
-                See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-            </p>
-            @*@(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Change</a>
-                    <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
-                        [<button type="submit" class="btn-link">Remove</button>]
-                    </form>
-                }
-                else
-                {
-                    <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Add</a>
-                }*@
-        </dd>
+    <div class="wow fadeInDown">
+        <div class="accordion">
+            <h2>Manage your account easily</h2>
+            <div class="panel-group" id="accordionAccount">
+                <div class="panel panel-default">
+                    <div class="panel-heading active">
+                        <h3 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseAccountInfo">
+                                Your Account Info
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                        </h3>
+                    </div>
 
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                for setting up this application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
-                        Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
-                    </form>
-                }
-                else
-                {
-                    <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
-                        <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
-                    </form>
-                }*@
-        </dd>
-    </dl>
+                    <div id="collapseAccountInfo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="media accordion-inner">                               
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <div id="avatarContainer">
+                                            <img id="avatarPhoto" src="images/accordion1.png" class="thumbnail" alt="Account Photo" width="304" height="236">
+                                        </div>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>Cras justo odio, dapibus ac facilisis in,
+                                             egestas eget quam. Donec id elit non
+                                             mi porta gravida at eget metus. Nullam 
+                                            id dolor id nibh ultricies vehicula ut id elit.</p>
+                                            <form asp-action="UploadImage" asp-controller="UploadFiles" class="dropzone" id="my-dropzone" method="post" enctype="multipart/form-data">
+                                                <div class="fallback">
+                                                    <input name="file" id="image" type="file" multiple  />
+                                                </div>
+                                            </form>
+                                            <br />
+                                            <p><a class="btn btn-primary" role="button" id="imgsubbutt">Upload</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="media-body">
+                                    <form asp-controller="" asp-action="" method="post" class="form-horizontal">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">Fist Name</label>
+                                            <div class="col-md-4">
+                                                <input  class="form-control" />
+                                                <span  class="text-danger"></span>
+                                            </div>
+                                            <labe class="col-md-2 control-label">Last Name</labe>
+                                            <div class="col-md-4">
+                                                <input  class="form-control" />
+                                                <span  class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label  class="col-md-2 control-label">Email</label>
+                                            <div class="col-md-4">
+                                                <input  class="form-control" />
+                                                <span class="text-danger"></span>
+                                            </div>
+                                            <label  class="col-md-2 control-label">Position</label>
+                                            <div class="col-md-4">
+                                                <input  class="form-control" />
+                                                <span  class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label  class="col-md-2 control-label">Overview</label>
+                                            <div class="col-md-10">
+                                                <textarea class="form-control" Rows="8" TextMode="MultiLine"></textarea>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseAuthentication">
+                                Authentication Details
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseAuthentication" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div>
+                                <h4>Change your account settings</h4>
+                                <hr />
+                                <dl class="dl-horizontal">
+                                    <dt>Password:</dt>
+                                    <dd>
+                                        @if (Model.HasPassword)
+                                        {
+                                            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Create</a>
+                                        }
+                                    </dd>
+                                    <dt>External Logins:</dt>
+                                    <dd>
+
+                                        @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
+                                    </dd>
+                                    <dt>Phone Number:</dt>
+                                    <dd>
+                                        <p>
+                                            Phone Numbers can used as a second factor of verification in two-factor authentication.
+                                            See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
+                                            for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+                                        </p>
+                                        @*@(Model.PhoneNumber ?? "None")
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <br />
+                        <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Change</a>
+                        <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
+                            [<button type="submit" class="btn-link">Remove</button>]
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Add</a>
+                    }*@
+                                    </dd>
+
+                                    <dt>Two-Factor Authentication:</dt>
+                                    <dd>
+                                        <p>
+                                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
+                                            for setting up this application to support two-factor authentication.
+                                        </p>
+                                        @*@if (Model.TwoFactor)
+                    {
+                        <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
+                            Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
+                            <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
+                        </form>
+                    }*@
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseThree1">
+                                3: Browser Compatibility
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseThree1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Bootstrap is compatible with all modern browsers and Internet Explorer versions 8 and up. If Bootstrap’s instructions are followed properly, you can create a website design that works in all these browsers. Plugins like HTML5Shiv and Respond.js come as part of Bootstrap’s default template. These help in porting HTML5 elements into older non-HTML5 browsers.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseFour1">
+                                4: Customization!
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseFour1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Bootstrap offers many ways to customize its default design. You can override all of its CSS and default JavaScript behaviour. Bootstrap is even more interesting if you are a Less or Sass developer, as it includes Less and Sass customization options. These options let you smoothly create a new template using Bootstrap.
+                        </div>
+                    </div>
+                </div>
+            </div><!--/#accordionAccount-->
+        </div>
+    </div>
+
+   
 </div>

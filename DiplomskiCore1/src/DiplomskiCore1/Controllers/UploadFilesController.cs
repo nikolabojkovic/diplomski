@@ -7,15 +7,22 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Identity;
+using DiplomskiCore1.Models;
 
 namespace DiplomskiCore1.Controllers
 {
     public class UploadFilesController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UploadFilesController(IHostingEnvironment hostingEnvironment)
+        public UploadFilesController(
+            UserManager<ApplicationUser> userManager,
+            IHostingEnvironment hostingEnvironment
+            )
         {
+            _userManager = userManager;
             _hostingEnvironment = hostingEnvironment;
         }
 
@@ -36,8 +43,13 @@ namespace DiplomskiCore1.Controllers
                 {
                     await file.CopyToAsync(stream);
                 }
-            }
 
+                var userId = _userManager.GetUserId(User);
+                ApplicationUser user = await _userManager.FindByIdAsync(userId);
+                user.PhotoName = fileName;
+                await _userManager.UpdateAsync(user);
+            }
+        
             return Ok(new { count = 1, file.Length, filePath });
         }
     }

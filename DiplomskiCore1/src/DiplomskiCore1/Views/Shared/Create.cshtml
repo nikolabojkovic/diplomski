@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-controller="Comment" asp-action="Create" method="post"
+      class="form-horizontal">
+    <input asp-for="BlogId" type="hidden" />
+    <div class="form-group">
+        <label asp-for="NewCommentText"></label>
+        <textarea asp-for="NewCommentText" class="form-control"
+                  placeholder="Enter your comments here..."></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

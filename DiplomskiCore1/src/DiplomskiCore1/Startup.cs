@@ -58,7 +58,7 @@ namespace DiplomskiCore1
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<BlogRepository, BlogRepository>();
+            services.AddTransient<BlogDbRepository, BlogDbRepository>();
             services.AddTransient<CommentRepository, CommentRepository>();
             services.AddTransient<UserRpository, UserRpository>();
         }

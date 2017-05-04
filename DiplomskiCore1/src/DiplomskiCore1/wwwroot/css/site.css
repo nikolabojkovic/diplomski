@@ -31,7 +31,6 @@ textarea {
 }
 
 .mirror {
-    display: block; 
     -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
     -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
     -o-transform: matrix(-1, 0, 0, 1, 0, 0);
@@ -49,6 +48,10 @@ textarea {
 
 .test {
     color : red;
+}
+
+.textToRight{
+    float:right;
 }
 
 /* error page */

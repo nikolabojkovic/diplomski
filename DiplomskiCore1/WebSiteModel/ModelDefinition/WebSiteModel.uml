@@ -7,11 +7,13 @@
     <comment
       Id="9143c517-323e-40b7-b616-e0acb5296368">
       <body>
-- ActivityRepository is gonna store data in ActionDb also, that is the whole idea.</body>
+- ActivityRepository is gonna store data in ActivityDb.
+
+History and EndHistoryId only for logging (logging to be implemented later)</body>
       <annotatedElements>
         <classMoniker
           Id="40d37fad-bf62-47ef-b79a-f0e9f1157f2d"
-          LastKnownName="Activity"
+          LastKnownName="Action"
           LastKnownLocation="WebSiteModel.uml" />
       </annotatedElements>
     </comment>
@@ -27,7 +29,7 @@
     </comment>
     <comment
       Id="94b3ddc6-9ed1-4ae1-b178-614042196969">
-      <body>Problem only with fact how to store entity in db? 
+      <body>Problem only how to store entity in db? 
 -Agregation and composition are only for db implementation not for class containers because controller is gonna be container if better solution is not found
 
 - in plan to add Message class (should be easy to add)!!!</body>
@@ -141,15 +143,6 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="5686ff71-3452-482b-aa9a-b46da95ca5a4">
-            <interfaceMoniker
-              Id="a04a1435-319d-495c-93cf-cfdd5821e7d4"
-              LastKnownName="IRepository"
-              LastKnownLocation="WebSiteModel.uml" />
-          </dependency>
-        </suppliersInternal>
         <ownedOperationsInternal>
           <operation
             Id="022e67a7-269c-4b0f-9cca-e6fb0ffa6bc0"
@@ -253,24 +246,69 @@
               LastKnownLocation="WebSiteModel.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="c911ea9d-e839-4c49-a998-eab35ef81d9d"
+            isDerived="false"
+            sourceEndRoleName="Comments"
+            targetEndRoleName="Comments"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b4068de4-26d7-4f55-832a-30b9b03b31cf"
+              LastKnownName="Comments"
+              LastKnownLocation="WebSiteModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="905030e0-6a3d-4161-a765-4306f6480550"
+                  name="Comments"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4d1fa17c-9009-4889-81a1-540f579cc535"
+                  name="Comments"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="5e826362-d03c-4a36-b0b0-e0e0f225d2b7"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="f01b1db0-c6ff-490c-8f59-0290a4f3e0da"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="40d37fad-bf62-47ef-b79a-f0e9f1157f2d"
-        name="Activity"
+        name="Action"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="81d5d1a6-e11d-4859-9eda-a89d27d40e59">
-            <interfaceMoniker
-              Id="a04a1435-319d-495c-93cf-cfdd5821e7d4"
-              LastKnownName="IRepository"
-              LastKnownLocation="WebSiteModel.uml" />
-          </dependency>
-        </suppliersInternal>
         <targetEnds>
           <association
             Id="c01dff00-9c80-4015-baea-9796878b260e"
@@ -314,7 +352,7 @@
           <association
             Id="4011013c-b270-4c41-a30a-7dfca64ba89c"
             isDerived="false"
-            sourceEndRoleName="Activity"
+            sourceEndRoleName="Action"
             targetEndRoleName="(Abstract) Entity"
             isLeaf="false"
             isAbstract="false">
@@ -326,7 +364,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="f9dbfa75-0765-4992-ae5a-bb79e05e7e14"
-                  name="Activity"
+                  name="Action"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -334,7 +372,20 @@
                   isDerivedUnion="false"
                   aggregation="Shared"
                   isComposite="false"
-                  isNavigableOwned="false" />
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="cca648d8-9ab6-48d7-bbf1-ea5b129b49fb"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="813930aa-12ff-4955-b912-89ccab75c5f0"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -353,7 +404,7 @@
           <association
             Id="0977fe02-db68-4260-9f45-d063dccd3c84"
             isDerived="false"
-            sourceEndRoleName="Activity"
+            sourceEndRoleName="Action"
             targetEndRoleName=".NetUser"
             isLeaf="false"
             isAbstract="false">
@@ -365,15 +416,28 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="fcca3ed7-d36b-48be-8819-9d179cf3ef46"
-                  name="Activity"
+                  name="Action"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Composite"
+                  aggregation="Shared"
                   isComposite="false"
-                  isNavigableOwned="false" />
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="a5e11f8a-dcb7-476c-ae47-c835ac406adc"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="0add8db9-fa35-4ea0-9c0b-3fc991dbb725"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -385,23 +449,51 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true" />
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5d64ca32-7526-46a0-9cc5-b624411125c2"
+            isDerived="false"
+            sourceEndRoleName="Action"
+            targetEndRoleName="ActionType"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="84312fc4-fe2c-4f77-b4eb-1ce7e2e1d9de"
+              LastKnownName="ActionType"
+              LastKnownLocation="WebSiteModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2609d4b8-41bf-41ae-8b15-80717f92f375"
+                  name="Action"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ea33107d-98dd-4236-8626-b8b1f0b58c73"
+                  name="ActionType"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property
-            Id="4b0c3b76-03f7-4774-8633-68a4bc82243c"
-            name="ActionId"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
           <property
             Id="b86e25e5-48b1-4ab0-a303-19ae5a80993e"
             name=".NetUserId"
@@ -416,6 +508,50 @@
           <property
             Id="8c5acb64-5704-4deb-8d8d-c6ef6ca926ba"
             name="EntityId"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="ae659f3f-e1a8-42c4-9822-9d13de7814f6"
+            name="ActionType"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="45d97146-d73e-4226-8b56-1412d5266fba"
+            name="ActionDate"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="c8cf7c02-335c-4a1a-a0dc-383204a72892"
+            name="HistoryId"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="b9cbb0f2-b4af-4b29-ac80-48d6fa6b0ab2"
+            name="EndHistoryId"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -452,15 +588,6 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="ff7c5dd9-2f9f-4416-ae3d-6743d2c115d7">
-            <interfaceMoniker
-              Id="a04a1435-319d-495c-93cf-cfdd5821e7d4"
-              LastKnownName="IRepository"
-              LastKnownLocation="WebSiteModel.uml" />
-          </dependency>
-        </suppliersInternal>
         <targetEnds>
           <association
             Id="6215fa68-5503-4b0b-8a6a-892269cf1db9"
@@ -731,6 +858,73 @@
               LastKnownLocation="WebSiteModel.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="4221e2b1-88e1-407e-a0a2-f5c540a64243"
+            isDerived="false"
+            sourceEndRoleName="JobOffer"
+            targetEndRoleName=".NetUser"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="02e1d812-646a-43a2-b1bb-a673ccd360e5"
+              LastKnownName=".NetUser"
+              LastKnownLocation="WebSiteModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e5878d23-4ae8-42c0-bb06-4bbf71aa2a60"
+                  name="JobOffer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1a5ef884-be6c-4f7c-9426-1a15e4c525bc"
+                  name=".NetUser"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="74ba351e-5721-4860-88bd-fff2d11e51e3"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="a73b05d9-67f9-47d6-b976-173e27a1fc92"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="94dfca81-209b-48c8-82bc-98d932db34e3"
+            name="Aplicants"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -756,6 +950,30 @@
               LastKnownLocation="WebSiteModel.uml" />
           </interfaceRealization>
         </suppliersInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="b0193871-65e1-4a64-b419-1e9a985e6d34"
+            name="FileStream"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="ec179ac8-c9c2-4504-a074-ad1b03a683a2"
+            name="Parser"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="8156fdd5-c874-4537-ae19-ed764e1d5b76"
@@ -816,6 +1034,19 @@
               LastKnownLocation="WebSiteModel.uml" />
           </interfaceRealization>
         </suppliersInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="4d1bf3a2-4c4e-4037-a186-19c5c1b24d4c"
+            name="DbContext"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="c9b1c011-a47d-404f-8e9c-c5c0f5fa4a1c"
@@ -993,12 +1224,12 @@
             Id="800aee50-dcff-451a-aac5-b8f847104cc0"
             isDerived="false"
             sourceEndRoleName="ActivityBridge"
-            targetEndRoleName="Activity"
+            targetEndRoleName="Action"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="40d37fad-bf62-47ef-b79a-f0e9f1157f2d"
-              LastKnownName="Activity"
+              LastKnownName="Action"
               LastKnownLocation="WebSiteModel.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -1017,7 +1248,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="2e3ddeef-0143-46e5-8c65-758f7ce41234"
-                  name="Activity"
+                  name="Action"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

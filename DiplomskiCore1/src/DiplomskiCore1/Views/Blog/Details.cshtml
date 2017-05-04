@@ -54,7 +54,7 @@
                     }
                     @if (blogAuthor != null)
                     {
-                        <span>Created by: @blogAuthor.FirstMidName @blogAuthor.LastName</span>
+                        <span class="textToRight">Created by: @blogAuthor.FirstMidName @blogAuthor.LastName</span>
                     }
                 </div>
             </div>
@@ -107,7 +107,7 @@
                             {
 
                                 <div class="col-md-4">
-                                    <span>Created by: @commentAuthor.FirstMidName @commentAuthor.LastName</span>
+                                    <span class="textToRight">Created by: @commentAuthor.FirstMidName @commentAuthor.LastName</span>
                                 </div>
                             }
                         </div>
@@ -115,7 +115,7 @@
             </div>
         }
     </div>
-    <form asp-controller="Comment" asp-action="Create" method="post"
+   <form asp-controller="Comment" asp-action="Create" method="post"
            class="form-horizontal">
         <input asp-for="BlogId" type="hidden"/>
         <div class="form-group">

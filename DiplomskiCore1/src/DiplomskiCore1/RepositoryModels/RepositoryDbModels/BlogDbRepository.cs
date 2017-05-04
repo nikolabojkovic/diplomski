@@ -12,9 +12,9 @@ using Remotion.Linq.Clauses;
 
 namespace DiplomskiCore1.Repository
 {
-    public class BlogRepository : DbRepository
+    public class BlogDbRepository : DbRepository
     {
-        public BlogRepository(ApplicationDbContext dbContext) :base(dbContext)
+        public BlogDbRepository(ApplicationDbContext dbContext) :base(dbContext)
         {
         }
         public override IEnumerable<Data> GetAll()

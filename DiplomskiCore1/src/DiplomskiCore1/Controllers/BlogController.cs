@@ -13,12 +13,12 @@ namespace DiplomskiCore1.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserRpository _userRepository;
-        private BlogRepository _repository;
+        private BlogDbRepository _repository;
 
         public BlogController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            BlogRepository repository,
+            BlogDbRepository repository,
             UserRpository userRepository)
         {
             _userManager = userManager;

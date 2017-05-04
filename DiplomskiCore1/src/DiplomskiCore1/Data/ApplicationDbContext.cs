@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DiplomskiCore1.Models;
+using DiplomskiCore1.Models.New_Models;
+using DiplomskiCore1.Models.NewModels;
 
 namespace DiplomskiCore1.Data
 {
@@ -17,7 +19,11 @@ namespace DiplomskiCore1.Data
         public DbSet<Comment> Comment { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<BlogActivity> BlogActivity { get; set; }
-        
+
+        // add new models
+        public DbSet<Post> Post { get; set; }
+        public DbSet<NewComment> NewComment { get; set; }
+        public DbSet<Action> Action { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,6 +34,10 @@ namespace DiplomskiCore1.Data
 
             builder.Entity<BlogActivity>()
             .HasKey(c => new { c.AuthorId, c.BlogId });
+
+            // add complex foreighn key for action
+            builder.Entity<Action>()
+                .HasKey(c => new { c.HistoryId, c.EntityId, c.AuthorId });
         }
     }
 }
